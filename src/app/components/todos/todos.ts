@@ -21,6 +21,12 @@ export class Todos {
     this.todos.push(todo);
     localStorage.setItem("todos", JSON.stringify(this.todos));
   }
+  toggleTodo(todo: Todo) {
+    console.log(todo);
+    const index = this.todos.indexOf(todo);
+    this.todos[index].isCompleted = !this.todos[index].isCompleted;
+    localStorage.setItem("todos", JSON.stringify(this.todos));
+  }
   todos: Todo[];
   constructor() {
     const localItem = localStorage.getItem("todos");

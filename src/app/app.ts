@@ -1,11 +1,11 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLinkWithHref } from '@angular/router';
 import { Todos } from "./components/todos/todos";
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  imports: [Todos, FormsModule],
+  imports: [FormsModule, RouterOutlet, RouterLinkWithHref],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

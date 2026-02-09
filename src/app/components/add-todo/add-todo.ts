@@ -14,14 +14,13 @@ export class AddTodo implements OnInit {
   @Output() todoAdd: EventEmitter<Todo> = new EventEmitter();
 
   onSubmit() {
-   const todo  = {
-    id: 6,
-    title: this.title,
-    description: this.desc,
-    isCompleted: false
-   }
-   this.todoAdd.emit(todo);
-
+    const todo = {
+      id: 6,
+      title: this.title,
+      description: this.desc,
+      isCompleted: false,
+    };
+    this.todoAdd.emit(todo);
   }
   ngOnInit(): void {}
 }
