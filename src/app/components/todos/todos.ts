@@ -1,35 +1,30 @@
 import { Component } from '@angular/core';
 import { Todo } from '../../Todo';
-import { TodoItem } from "../todo-item/todo-item";
+import { TodoItem } from '../todo-item/todo-item';
+import { AddTodo } from "../add-todo/add-todo";
 
 @Component({
   selector: 'app-todos',
-  imports: [TodoItem],
+  imports: [TodoItem, AddTodo],
   templateUrl: './todos.html',
   styleUrl: './todos.css',
 })
 export class Todos {
+  deleteTodo(todo: Todo) {
+    console.log(todo);
+    const index = this.todos.indexOf(todo);
+    this.todos.splice(index,1);
+    localStorage.setItem("todos", JSON.stringify(this.todos));
+  }
+  addTodo(todo: Todo) {
+    console.log(todo);
+    this.todos.push(todo);
+    localStorage.setItem("todos", JSON.stringify(this.todos));
+  }
   todos: Todo[];
   constructor() {
-    this.todos = [
-      {
-        id: 1,
-        title: 'Learn Angular',
-        description: 'Learn the basics of Angular framework',
-        isCompleted: false,
-      },
-      {
-        id: 2,
-        title: 'Build a Todo App',
-        description: 'Create a simple todo application using Angular',
-        isCompleted: false,
-      },
-      {
-        id: 3,
-        title: 'Learn TypeScript',
-        description: 'Understand the basics of TypeScript',
-        isCompleted: false,
-      },
-    ];
+    const localItem = localStorage.getItem("todos");
+    if(localItem == null) this.todos = [];
+    else this.todos = JSON.parse(localItem);
   }
 }

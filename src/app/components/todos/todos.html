@@ -1,5 +1,13 @@
+<app-add-todo (todoAdd)="addTodo($event)"></app-add-todo>
+<div class="container mt-4"></div>
+<h4>Your Todos</h4>
 <div>
-  @for (todo of todos; track todo.id) {
-    <app-todo-item [todo] = "todo"></app-todo-item>
-  }
+    @if(this.todos.length == 0) {
+    No Todos to Display
+    }
+    @else {
+    @for (todo of todos; track todo.id) {
+    <app-todo-item [todo]="todo" (todoDelete)="deleteTodo($event)"></app-todo-item>
+    }
+    }
 </div>
